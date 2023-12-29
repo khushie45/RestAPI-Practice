@@ -49,13 +49,6 @@ app.get("/api/v1/product/all", async (req, res) => {
 app.put("/api/v1/product/:id", async (req, res) => {
   let product = await Product.findById(req.param.id);
 
-  if (!product) {
-    return res.status(500).json({
-      success: false,
-      message: "Product not found",
-    });
-  }
-
   product = await Product.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     useFindAndModify: false,
